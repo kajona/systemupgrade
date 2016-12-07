@@ -56,7 +56,7 @@ class KajonaUpgrade
                 $strSystemid = $arrRemote["items"][0]["systemid"];
 
                 echo "  Remote version: V{$strRemoteVersion}\n";
-                if(true || version_compare($strVersion, $strRemoteVersion, "<")) {
+                if(version_compare($strVersion, $strRemoteVersion, "<")) {
                     echo "  Downloading new phar module\n";
                     ob_flush();
                     flush();
