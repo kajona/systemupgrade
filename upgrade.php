@@ -6,9 +6,15 @@ class KajonaUpgrade
 
     public function main()
     {
+        if (!$this->checkPhpVersion()) {
+            return;
+        }
+
         if (!is_dir(__DIR__."/core")) {
             echo "/core directory not found, aborting\n";
         }
+
+
 
         //check some permissions
         if (!$this->checkPermissions()) {
@@ -126,6 +132,15 @@ class KajonaUpgrade
         return $bitAllPharsWritable;
     }
 
+
+    private function checkPhpVersion()
+    {
+        if (version_compare(phpversion(), "7.0", "<")) {
+            echo "At least php version 7.0 is required, currently available: ".phpversion().PHP_EOL."Aborting".PHP_EOL;
+            return false;
+        }
+        return true;
+    }
 
 
 
